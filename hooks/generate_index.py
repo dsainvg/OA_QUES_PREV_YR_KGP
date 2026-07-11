@@ -17,14 +17,19 @@ def on_config(config):
             
     os.makedirs(docs_dir, exist_ok=True)
     
-    # Recreate docs/javascripts directory
+    # Recreate docs/javascripts directory and copy assets
     js_dest_dir = os.path.join(docs_dir, 'javascripts')
     os.makedirs(js_dest_dir, exist_ok=True)
-    
-    # Copy mathjax.js if it exists in the root javascripts folder
     js_src_file = os.path.join(root_dir, 'javascripts', 'mathjax.js')
     if os.path.exists(js_src_file):
         shutil.copy(js_src_file, os.path.join(js_dest_dir, 'mathjax.js'))
+        
+    # Recreate docs/stylesheets directory and copy assets
+    css_dest_dir = os.path.join(docs_dir, 'stylesheets')
+    os.makedirs(css_dest_dir, exist_ok=True)
+    css_src_file = os.path.join(root_dir, 'stylesheets', 'custom.css')
+    if os.path.exists(css_src_file):
+        shutil.copy(css_src_file, os.path.join(css_dest_dir, 'custom.css'))
         
     # Find all markdown files in root_dir
     md_files = glob.glob(os.path.join(root_dir, '*.md'))
@@ -40,26 +45,38 @@ def on_config(config):
         name = os.path.splitext(filename)[0]
         company_name = name.replace('-', ' ').replace('_', ' ').title()
         
-        # Copy the markdown file to the docs/ directory
-        dest_file_path = os.path.join(docs_dir, filename)
-        shutil.copy(f, dest_file_path)
-        
-        # Read the file to count questions
+        # Read the file to count questions and rewrite its main header
         num_questions = 0
+        file_content_str = ""
         try:
             with open(f, 'r', encoding='utf-8') as file_content:
-                content = file_content.read()
+                file_content_str = file_content.read()
+                
                 # Count headers starting with '### Q'
-                q_matches = re.findall(r'^###\s+Q\d+', content, re.MULTILINE)
+                q_matches = re.findall(r'^###\s+Q\d+', file_content_str, re.MULTILINE)
                 num_questions = len(q_matches)
                 
                 # If no matching headers, search for "Total questions: X"
                 if num_questions == 0:
-                    tq_match = re.search(r'Total questions:\s*(\d+)', content)
+                    tq_match = re.search(r'Total questions:\s*(\d+)', file_content_str)
                     if tq_match:
                         num_questions = int(tq_match.group(1))
         except Exception as e:
             print(f"Error reading file {filename}: {e}")
+            
+        # Rename the generic H1 header (e.g. "# Interview Questions") in the copied file to "# <Company Name>"
+        # This makes the navigation tab and page title automatically show the company name!
+        modified_content, replacement_count = re.subn(r'^#\s+.*$', f"# {company_name}", file_content_str, count=1, flags=re.MULTILINE)
+        if replacement_count == 0:
+            modified_content = f"# {company_name}\n\n" + file_content_str
+            
+        # Write the modified markdown file to the docs/ directory
+        dest_file_path = os.path.join(docs_dir, filename)
+        try:
+            with open(dest_file_path, 'w', encoding='utf-8') as dest_file:
+                dest_file.write(modified_content)
+        except Exception as e:
+            print(f"Error writing file {filename}: {e}")
             
         companies.append({
             'name': company_name,

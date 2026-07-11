@@ -1,0 +1,100 @@
+/* Clean the top bar / header to blend in seamlessly with the dark mode background */
+.md-header {
+  background-color: var(--md-default-bg-color) !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Hide the logo and site title in the header */
+.md-logo, .md-header__button.md-logo {
+  display: none !important;
+}
+.md-header__title {
+  display: none !important;
+}
+
+/* Adjust the search bar to look sleek, centered, and blended */
+.md-search {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+}
+
+.md-search__form {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease;
+}
+
+.md-search__form:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.md-search__input {
+  color: var(--md-default-fg-color) !important;
+}
+
+.md-search__icon {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Make sure the main content is padded nicely from the clean header */
+.md-main {
+  margin-top: 10px;
+}
+
+/* Style the cards on the homepage to be extremely premium and modern */
+.grid.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.grid.cards > li {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.grid.cards > li:hover {
+  transform: translateY(-4px) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: var(--md-accent-fg-color) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15) !important;
+}
+
+.grid.cards li hr {
+  margin: 12px 0 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.grid.cards li a {
+  margin-top: auto !important;
+  padding-top: 15px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-weight: 500 !important;
+  color: var(--md-accent-fg-color) !important;
+  text-decoration: none !important;
+}
+
+.grid.cards li a:hover {
+  text-decoration: underline !important;
+}
+
+.grid.cards li a svg {
+  margin-left: 6px !important;
+  transition: transform 0.2s ease;
+}
+
+.grid.cards li a:hover svg {
+  transform: translateX(4px);
+}
