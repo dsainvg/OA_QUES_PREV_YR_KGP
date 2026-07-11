@@ -1,0 +1,14 @@
+# Ignore MkDocs build output
+site/
+
+# Ignore dynamically generated docs directory content, but keep the placeholder
+docs/*
+!docs/.gitkeep
+
+# Ignore editor and local config directories
+.obsidian/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+Desktop.ini
