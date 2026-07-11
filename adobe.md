@@ -50,6 +50,7 @@ edges = {{1, 2}, {1, 3}, {2, 4}, {3, 5}}
 ```
 **Explanation:**  
 The values of the nodes are:
+
 - Node 1: 1
 - Node 2: 1
 - Node 3: 1
@@ -57,6 +58,7 @@ The values of the nodes are:
 - Node 5: 1
 
 If we remove:
+
 - Edge `{2, 4}`: One subtree has node `{4}` (value 2, freq 1), and the other has `{1, 2, 3, 5}` (values `{1, 1, 1, 1}`, freq of 1 is 4 > k=3). Hence, `{2, 4}` is bad.
 - Edge `{1, 2}`: One subtree has `{2, 4}` (values `{1, 2}`, max freq 1 <= 3), and the other has `{1, 3, 5}` (values `{1, 1, 1}`, max freq of 1 is 3 <= 3). Good!
 - Edge `{1, 3}`: One subtree has `{3, 5}` (values `{1, 1}`, max freq 2 <= 3), and the other has `{1, 2, 4}` (values `{1, 1, 2}`, max freq 2 <= 3). Good!
