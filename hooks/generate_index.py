@@ -104,7 +104,7 @@ def on_config(config):
         
         md_content.append(f"-   :material-briefcase: **{name}**")
         md_content.append("    ---")
-        md_content.append(f"    Contains {q_text} with detailed solutions, complexity analysis, and implementation code.")
+        md_content.append(f"    Contains {q_text}.")
         md_content.append(f"    [:octicons-arrow-right-24: View Questions]({filename})\n")
         
     md_content.append('</div>\n')
