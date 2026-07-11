@@ -8,6 +8,12 @@ docs/*
 # Ignore editor and local config directories
 .obsidian/
 
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
