@@ -70,6 +70,9 @@ def on_config(config):
         if replacement_count == 0:
             modified_content = f"# {company_name}\n\n" + file_content_str
             
+        # Remove the "Generated from: ..." line dynamically
+        modified_content = re.sub(r'^\*Generated from:.*\n?', '', modified_content, flags=re.MULTILINE)
+            
         # Write the modified markdown file to the docs/ directory
         dest_file_path = os.path.join(docs_dir, filename)
         try:
