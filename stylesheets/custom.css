@@ -99,3 +99,63 @@
 .grid.cards li a:hover svg {
   transform: translateX(4px);
 }
+
+/* --- UI Layout & Color Customizations --- */
+
+/* Expand main grid layout to screen corners for ultra-wide desktop views */
+.md-grid {
+  max-width: 98% !important;
+}
+
+/* Allow the main content area to expand between the sidebars */
+.md-content {
+  max-width: 100% !important;
+}
+
+.md-content__inner {
+  max-width: 100% !important;
+}
+
+/* Ensure sidebars are kept far apart to the screen corners */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    left: 1% !important;
+  }
+  .md-sidebar--secondary {
+    right: 1% !important;
+  }
+}
+
+/* Get rid of green colors completely: Override Success & Check admonitions to blue */
+.md-typeset .admonition.success,
+.md-typeset details.success,
+.md-typeset .admonition.check,
+.md-typeset details.check {
+  border-color: #0288d1 !important;
+}
+.md-typeset .success > .admonition-title,
+.md-typeset .success > summary,
+.md-typeset .check > .admonition-title,
+.md-typeset .check > summary {
+  background-color: rgba(2, 136, 209, 0.1) !important;
+}
+.md-typeset .success > .admonition-title::before,
+.md-typeset .success > summary::before,
+.md-typeset .check > .admonition-title::before,
+.md-typeset .check > summary::before {
+  color: #0288d1 !important;
+}
+
+/* Override tip admonitions (teal/greenish) to orange */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: #f57c00 !important;
+}
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: rgba(245, 124, 0, 0.1) !important;
+}
+.md-typeset .tip > .admonition-title::before,
+.md-typeset .tip > summary::before {
+  color: #f57c00 !important;
+}
