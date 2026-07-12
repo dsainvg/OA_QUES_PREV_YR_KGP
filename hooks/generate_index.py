@@ -37,6 +37,7 @@ def on_config(config):
     image_src_file = os.path.join(root_dir, 'image.png')
     if os.path.exists(image_src_file):
         shutil.copy(image_src_file, os.path.join(assets_dest_dir, 'dsa_logo.jpg'))
+        shutil.copy(image_src_file, os.path.join(docs_dir, 'image.png'))
         
     # Find all markdown files in root_dir
     md_files = glob.glob(os.path.join(root_dir, '*.md'))
