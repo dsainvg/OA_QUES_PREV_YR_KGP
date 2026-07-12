@@ -11,7 +11,7 @@
 3. [Data Interpretation](#data-interpretation)
 4. [Verbal Ability and Reading Comprehension](#verbal-ability-and-reading-comprehension)
 5. [Logical and Critical Reasoning](#logical-and-critical-reasoning)
-6. [SSC CGL Reference Paper - Quantitative Aptitude](#ssc-cgl-reference-paper---quantitative-aptitude)
+6. [SSC CGL Reference Paper - Quantitative Aptitude](#ssc-cgl-reference-paper-quantitative-aptitude)
 
 ---
 

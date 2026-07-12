@@ -7,8 +7,8 @@
 
 ## Table of Contents
 
-1. [Quantitative & Logic Questions](#quantitative--logic-questions)
-2. [Finance & Accounting Questions](#finance--accounting-questions)
+1. [Quantitative & Logic Questions](#quantitative-logic-questions)
+2. [Finance & Accounting Questions](#finance-accounting-questions)
 3. [Economics Questions](#economics-questions)
 
 ---

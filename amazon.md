@@ -8,11 +8,6 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-   - [Q1. Divisible Cost Pairs](#q1-divisible-cost-pairs)
-   - [Q2. Duel Tournament Power Boosters](#q2-duel-tournament-power-boosters)
-   - [Q3. Common Regex Wildcards](#q3-common-regex-wildcards)
-   - [Q4. Minimize Maximum Parcels](#q4-minimize-maximum-parcels)
-   - [Q5. AWS Outlier Detection](#q5-aws-outlier-detection)
 
 ---
 

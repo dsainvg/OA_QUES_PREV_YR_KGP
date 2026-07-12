@@ -8,8 +8,7 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-2. [Theoretical Questions](#theoretical-questions)
-3. [MCQs](#mcqs)
+2. [MCQs](#mcqs)
 
 ---
 

@@ -8,9 +8,6 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-   - [Q1. Count Good Edge](#q1-count-good-edge)
-   - [Q2. Minimum Sum](#q2-minimum-sum)
-   - [Q3. Good Subarrays](#q3-good-subarrays)
 
 ---
 

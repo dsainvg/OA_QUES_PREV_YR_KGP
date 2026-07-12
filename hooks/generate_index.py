@@ -32,9 +32,11 @@ def on_config(config):
         shutil.copy(css_src_file, os.path.join(css_dest_dir, 'custom.css'))
         
     # Copy logo/favicon
+    assets_dest_dir = os.path.join(docs_dir, 'assets')
+    os.makedirs(assets_dest_dir, exist_ok=True)
     image_src_file = os.path.join(root_dir, 'image.png')
     if os.path.exists(image_src_file):
-        shutil.copy(image_src_file, os.path.join(docs_dir, 'image.png'))
+        shutil.copy(image_src_file, os.path.join(assets_dest_dir, 'dsa_logo.jpg'))
         
     # Find all markdown files in root_dir
     md_files = glob.glob(os.path.join(root_dir, '*.md'))

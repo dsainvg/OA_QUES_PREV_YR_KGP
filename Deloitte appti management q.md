@@ -6,11 +6,8 @@
 
 ## Table of Contents
 
-1. [Behavioral Questions (Situational Judgment)](#behavioral-questions-situational-judgment)
+1. [Behavioral Questions](#behavioral-questions)
 2. [MCQs](#mcqs)
-    * [Quantitative Ability](#quantitative-ability)
-    * [Data Interpretation](#data-interpretation)
-    * [Verbal Ability](#verbal-ability)
 3. [Puzzles](#puzzles)
 
 ---

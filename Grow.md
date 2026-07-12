@@ -7,8 +7,6 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-   - [Q1. Reach Teammates](#q1-reach-teammates)
-   - [Q2. Towers](#q2-towers)
 
 ---
 
