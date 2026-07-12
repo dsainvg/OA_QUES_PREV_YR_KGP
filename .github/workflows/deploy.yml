@@ -36,6 +36,7 @@ jobs:
         run: |
           mkdir -p docs
           python -m mkdocs build
+          cp wrangler.jsonc ./site/wrangler.jsonc
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
