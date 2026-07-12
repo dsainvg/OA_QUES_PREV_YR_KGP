@@ -177,10 +177,14 @@ def longestProfit(data: list[int]) -> int:
 ### Q4. DBMS MCQ: Removing a Relation from SQL
 
 Which command is used to remove a relation from an SQL?
-- [x] Drop table
-- [ ] Remove
-- [ ] Purge
-- [ ] Delete
+
+**Options:**
+- A) Drop table
+- B) Remove
+- C) Purge
+- D) Delete
+
+**Correct Answer:** **A) Drop table**
 
 **Explanation:** In SQL, a relation refers to a table. The `DROP TABLE` command is used to delete the table definition as well as all its rows, indexes, triggers, constraints, and permission specifications. `DELETE` is used to remove rows from a table, not the table itself.
 
@@ -200,10 +204,13 @@ int fun(struct node *root) {
 }
 ```
 
-- [ ] Returns height where height is defined as the number of edges on the path from the root to the deepest node
-- [ ] Counts leaf nodes
-- [ ] Counts total number of nodes
-- [x] Counts internal nodes
+**Options:**
+- A) Returns height where height is defined as the number of edges on the path from the root to the deepest node
+- B) Counts leaf nodes
+- C) Counts total number of nodes
+- D) Counts internal nodes
+
+**Correct Answer:** **D) Counts internal nodes**
 
 **Explanation:** 
 - If the tree is empty (`root == NULL`), the function returns `0`.

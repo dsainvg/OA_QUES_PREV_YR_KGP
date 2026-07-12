@@ -6,8 +6,10 @@ theme:
   name: material
   palette:
     scheme: slate
-    primary: teal
-    accent: teal
+    primary: blue
+    accent: indigo
+  logo: assets/dsa_logo.jpg
+  favicon: assets/dsa_logo.jpg
   font:
     text: Roboto
     code: Roboto Mono

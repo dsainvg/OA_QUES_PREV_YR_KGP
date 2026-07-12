@@ -451,7 +451,7 @@ How many odd numbers are there between 50 and 450 written with the digits {0, 1,
 
 **Topic:** `Quantitative Aptitude`, `Set Theory`  
 
-The percentage of students who passed all courses in the CBSE Board Exams last year was 52% in Science, [missing %] in Math, 42% in Hindi, 15% in Math and Science, 25% in Science and Hindi, 37% in Math and Hindi, and 10% in none. What is the percentage who passed in all?
+The percentage of students who passed all courses in the CBSE Board Exams last year was 52% in Science, 42% in Math, 63% in Hindi, 15% in Math and Science, 25% in Science and Hindi, 37% in Math and Hindi, and 10% in none. What is the percentage who passed in all?
 
 **Options:**
 - A) 40%
@@ -461,9 +461,16 @@ The percentage of students who passed all courses in the CBSE Board Exams last y
 
 **Correct Answer:** **B) 10%**  
 **Explanation:**
-- The percentage of students who passed all three subjects (Science $\cap$ Math $\cap$ Hindi) cannot exceed the percentage of students who passed any pair of these subjects.
-- Since only 15% of students passed Math and Science, the intersection of all three must be $\le 15\%$.
-- Among the given options, **10%** is the only value less than or equal to 15%. Hence, it is the only mathematically valid option.
+- Let $S$, $M$, and $H$ represent the sets of students who passed Science, Math, and Hindi respectively.
+- Total students who passed at least one subject = $100\% - 10\% = 90\%$.
+- Using the principle of inclusion-exclusion:
+  $$|S \cup M \cup H| = |S| + |M| + |H| - (|S \cap M| + |S \cap H| + |M \cap H|) + |S \cap M \cap H|$$
+- Substitute the given values:
+  $$90 = 52 + 42 + 63 - (15 + 25 + 37) + |S \cap M \cap H|$$
+  $$90 = 157 - 77 + |S \cap M \cap H|$$
+  $$90 = 80 + |S \cap M \cap H|$$
+  $$|S \cap M \cap H| = 10\%$$
+- Therefore, the percentage of students who passed in all subjects is 10%.
 
 ---
 
