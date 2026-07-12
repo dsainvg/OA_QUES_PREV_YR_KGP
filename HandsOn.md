@@ -7,12 +7,6 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-2. [SQL Questions](#sql-questions)
-3. [Theoretical Questions](#theoretical-questions)
-4. [System Design Questions](#system-design-questions)
-5. [Behavioral Questions](#behavioral-questions)
-6. [MCQs](#mcqs)
-7. [Puzzles](#puzzles)
 
 ---
 
@@ -448,39 +442,3 @@ public class Solution {
     }
 }
 ```
-
----
-
-## SQL Questions
-
-No questions found in this category.
-
----
-
-## Theoretical Questions
-
-No questions found in this category.
-
----
-
-## System Design Questions
-
-No questions found in this category.
-
----
-
-## Behavioral Questions
-
-No questions found in this category.
-
----
-
-## MCQs
-
-No questions found in this category.
-
----
-
-## Puzzles
-
-No questions found in this category.

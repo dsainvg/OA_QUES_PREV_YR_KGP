@@ -7,12 +7,6 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-2. [SQL Questions](#sql-questions)
-3. [Theoretical Questions](#theoretical-questions)
-4. [System Design Questions](#system-design-questions)
-5. [Behavioral Questions](#behavioral-questions)
-6. [MCQs](#mcqs)
-7. [Puzzles](#puzzles)
 
 ---
 
@@ -308,39 +302,3 @@ int getMinLeavesToRemove(int tree_nodes, vector<int>& tree_from, vector<int>& tr
     return dfs(1, 0, 0LL, LLONG_MAX, adj, subtree_size, arr);
 }
 ```
-
----
-
-## SQL Questions
-
-*No SQL questions were found in the source files.*
-
----
-
-## Theoretical Questions
-
-*No theoretical questions were found in the source files.*
-
----
-
-## System Design Questions
-
-*No system design questions were found in the source files.*
-
----
-
-## Behavioral Questions
-
-*No behavioral questions were found in the source files.*
-
----
-
-## MCQs
-
-*No MCQs were found in the source files.*
-
----
-
-## Puzzles
-
-*No puzzles were found in the source files.*

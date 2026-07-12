@@ -7,12 +7,6 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-2. [SQL Questions](#sql-questions)
-3. [Theoretical Questions](#theoretical-questions)
-4. [System Design Questions](#system-design-questions)
-5. [Behavioral Questions](#behavioral-questions)
-6. [MCQs](#mcqs)
-7. [Puzzles](#puzzles)
 
 ---
 
@@ -437,39 +431,3 @@ def solution(n: int, v: list) -> int:
         
     return dp[n]
 ```
-
----
-
-## SQL Questions
-
-*No SQL questions were found in this directory.*
-
----
-
-## Theoretical Questions
-
-*No theoretical questions were found in this directory.*
-
----
-
-## System Design Questions
-
-*No system design questions were found in this directory.*
-
----
-
-## Behavioral Questions
-
-*No behavioral questions were found in this directory.*
-
----
-
-## MCQs
-
-*No MCQs were found in this directory.*
-
----
-
-## Puzzles
-
-*No puzzles were found in this directory.*

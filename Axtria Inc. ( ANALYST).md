@@ -7,12 +7,7 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-2. [SQL Questions](#sql-questions)
-3. [Theoretical Questions](#theoretical-questions)
-4. [System Design Questions](#system-design-questions)
-5. [Behavioral Questions](#behavioral-questions)
-6. [MCQs](#mcqs)
-7. [Puzzles](#puzzles)
+2. [MCQs](#mcqs)
 
 ---
 
@@ -176,30 +171,6 @@ class CircularLinkedList:
     def is_empty(self):
         return self.current is None
 ```
-
----
-
-## SQL Questions
-
-*No SQL questions were found in this company's preparation resources.*
-
----
-
-## Theoretical Questions
-
-*No separate theoretical questions were found.*
-
----
-
-## System Design Questions
-
-*No system design questions were found.*
-
----
-
-## Behavioral Questions
-
-*No behavioral questions were found.*
 
 ---
 
@@ -805,9 +776,3 @@ Pointing to a photo of R, Mr. B said: "she is the daughter of my only sister's o
 - Mr. B's only sister's only son's only uncle is Mr. B himself. Thus, R is Mr. B's daughter.
 - E says R is the daughter of E's mother's only brother (which is B). So B is E's maternal uncle.
 - Since B's sister has an only son (E), E is B's nephew.
-
----
-
-## Puzzles
-
-*No standalone puzzles were found.*
