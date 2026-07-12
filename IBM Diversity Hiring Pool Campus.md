@@ -7,7 +7,7 @@
 ## Table of Contents
 
 1. [Coding Questions](#coding-questions)
-2. [Theoretical Questions](#theoretical-questions)
+2. [Theoretical & MCQ Questions](#theoretical-mcq-questions)
 
 ---
 

@@ -15,7 +15,7 @@
 ## Table of Contents
 
 1. [Theoretical Questions](#theoretical-questions)
-2. [Puzzles](#puzzles)
+2. [Puzzles / Logical Reasoning](#puzzles-logical-reasoning)
 
 ---
 

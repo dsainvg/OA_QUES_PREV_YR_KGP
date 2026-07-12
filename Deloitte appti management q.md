@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
-1. [Behavioral Questions](#behavioral-questions)
+1. [Behavioral Questions (Situational Judgment)](#behavioral-questions-situational-judgment)
 2. [MCQs](#mcqs)
 3. [Puzzles](#puzzles)
 
