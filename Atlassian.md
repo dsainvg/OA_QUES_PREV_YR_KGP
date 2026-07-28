@@ -1,7 +1,6 @@
 # Interview Questions
 
-*Generated from: R:/DSA/Company wise prep resource/Atlassian*
-*Total questions: 2*
+*Total questions: 5*
 
 ---
 
@@ -13,7 +12,160 @@
 
 ## Coding Questions
 
-### Q1. Confluence Text Editor Parity Check
+### Q1. Minimum Stress Path
+
+`[Latest]`
+
+**Topic:** `Graph`, `Dijkstra`, `Minimax Path`, `Bottleneck Path`
+
+### Problem Description
+You are given a weighted undirected graph with `graph_nodes` nodes and `m` edges. The stress level of a path between two nodes is defined as the weight of the heaviest edge in that path.
+
+Given a source node `source` and a destination node `destination`, find the minimum possible stress level of a path. If no such path exists, return $-1$.
+
+### Sample Case
+Consider a graph where `source = 1` and `destination = 3`:
+- Node $1$ is connected to $2$ (weight $100$) and $4$ (weight $10$).
+- Node $2$ is connected to $3$ (weight $200$).
+- Node $4$ is connected to $3$ (weight $20$).
+
+There are two paths from node $1$ to node $3$:
+1. $1 \to 2 \to 3$: The maximum edge weight is $200$.
+2. $1 \to 4 \to 3$: The maximum edge weight is $20$.
+
+The minimum possible stress level is $20$.
+
+---
+
+### Python Solution
+
+```python
+import heapq
+
+def getMinimumStress(graph_nodes, graph_from, graph_to, graph_weight, source, destination):
+    if source == destination:
+        return 0
+        
+    adj = [[] for _ in range(graph_nodes + 1)]
+    for u, v, w in zip(graph_from, graph_to, graph_weight):
+        adj[u].append((v, w))
+        adj[v].append((u, w))
+        
+    dist = [float('inf')] * (graph_nodes + 1)
+    dist[source] = 0
+    pq = [(0, source)]
+    
+    while pq:
+        d, u = heapq.heappop(pq)
+        if d > dist[u]:
+            continue
+        if u == destination:
+            return d
+            
+        for v, w in adj[u]:
+            nxt = max(d, w)
+            if nxt < dist[v]:
+                dist[v] = nxt
+                heapq.heappush(pq, (nxt, v))
+                
+    return -1
+```
+
+---
+
+### Q2. Service Scaling Max Throughput
+
+`[Latest]`
+
+**Topic:** `Binary Search`, `Greedy`
+
+### Problem Description
+We have a composite service consisting of $N$ underlying services. The $i$-th service has an initial throughput `throughput[i]`.
+We can increase the throughput of the $i$-th service in integer scaling increments. Each scaling step adds another `throughput[i]` to its capacity (e.g., scaling it $k-1$ times gives a throughput of $k \times \text{throughput}[i]$).
+Each scaling increment for the $i$-th service costs `scalingCost[i]`. We have a total budget `budget`.
+
+The overall throughput of the composite service is the minimum throughput among all $N$ services. Maximize this overall throughput.
+
+---
+
+### Python Solution
+
+```python
+def getMaximumThroughput(throughput, scalingCost, budget):
+    def check(T):
+        cost = 0
+        for t, c in zip(throughput, scalingCost):
+            # To get at least T throughput, we need scaling factor k >= ceil(T/t)
+            # number of scaling steps = k - 1 = ceil(T/t) - 1
+            x = (T + t - 1) // t - 1
+            if x > 0:
+                cost += x * c
+                if cost > budget:
+                    return False
+        return True
+
+    low = min(throughput)
+    high = min(t * (1 + budget // c) for t, c in zip(throughput, scalingCost))
+    ans = low
+    
+    while low <= high:
+        mid = (low + high) // 2
+        if check(mid):
+            ans = mid
+            low = mid + 1
+        else:
+            high = mid - 1
+            
+    return ans
+```
+
+---
+
+### Q3. Knight's Minimum Moves
+
+`[Latest]`
+
+**Topic:** `Graph`, `BFS`, `Shortest Path`
+
+### Problem Description
+Given an $n \times n$ chessboard, determine the minimum number of valid knight moves required to travel from a starting position $A$ to an ending position $B$. If it is impossible to reach the destination, return $-1$.
+All moves must be within the boundaries of the board.
+
+Assume positions $A$ and $B$ are given as $(row, column)$ coordinates using 0-based indexing.
+
+---
+
+### Python Solution
+
+```python
+from collections import deque
+
+def minMoves(n, startRow, startCol, endRow, endCol):
+    if startRow == endRow and startCol == endCol:
+        return 0
+        
+    q = deque([(startRow, startCol, 0)])
+    visited = [[False] * n for _ in range(n)]
+    visited[startRow][startCol] = True
+    
+    moves = [(-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1)]
+    
+    while q:
+        r, c, d = q.popleft()
+        for dr, dc in moves:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < n and 0 <= nc < n and not visited[nr][nc]:
+                if nr == endRow and nc == endCol:
+                    return d + 1
+                visited[nr][nc] = True
+                q.append((nr, nc, d + 1))
+                
+    return -1
+```
+
+---
+
+### Q4. Confluence Text Editor Parity Check
 
 **Topic:** `Strings`, `Bit Manipulation`, `Parity`  
 
@@ -69,7 +221,7 @@ def checkParity(m: int, s: list[str]) -> str:
 
 ---
 
-### Q2. Rearrange Students (Height Balance)
+### Q5. Rearrange Students (Height Balance)
 
 **Topic:** `Arrays`, `Greedy`, `Sorting`, `Math`  
 
@@ -138,3 +290,4 @@ def rearrangeStudents(arrA: list[int], arrB: list[int]) -> int:
 
 - **Time Complexity:** $O(N \log N)$ due to sorting the excess arrays.
 - **Space Complexity:** $O(N)$ to store counts and excess arrays.
+

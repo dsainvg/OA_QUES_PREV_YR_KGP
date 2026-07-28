@@ -1,7 +1,6 @@
 # Interview Questions
 
-*Generated from: R:/DSA/Company wise prep resource/Google*
-*Total questions: 7*
+*Total questions: 9*
 
 ---
 
@@ -13,7 +12,264 @@
 
 ## Coding Questions
 
-### Q1. First Subsequence
+### Q1. Lighthouse Flag Broadcast
+
+`[Latest]`
+
+**Topic:** `Greedy`, `Binary Search`, `Precomputation`, `String`
+
+#### Description
+Every evening, the keeper of the Saltmere lighthouse raises a sequence of signal flags along the harbour mast. Each flag contains one lowercase letter, and the flags remain in the order in which they were raised.
+
+The glow strength of a flag is determined by its letter. The letter **a** has strength 1, **b** has strength 2, and so on up to **z**, which has strength 26.
+
+The harbour authority requires the keeper to select exactly $k$ flags from the sequence without changing their original order. The total glow strength of the selected flags must be at least $f$.
+
+Among all selections that satisfy these conditions, determine the lexicographically smallest string formed by the selected flags.
+
+#### Constraints
+- $1 \le k \le n \le 100,000$
+- $1 \le f \le 26 \times k$
+- The string `s` consists only of lowercase English letters.
+- It is guaranteed that at least one valid selection of $k$ flags exists whose total strength is at least $f$.
+
+#### Parameters
+- `n`: The number of flags in the sequence.
+- `s`: A string of $n$ lowercase English letters representing the flags in their original order.
+- `k`: The exact number of flags that must be selected.
+- `f`: The minimum total glow strength required from the selected flags.
+
+#### Returns
+- The lexicographically smallest string of length $k$ that can be obtained by deleting $n-k$ characters from $s$ while preserving the order of the remaining characters and ensuring that their total glow strength is at least $f$.
+
+#### Sample Input 1
+```text
+1
+z
+1
+26
+```
+
+#### Sample Output 1
+```text
+z
+```
+
+#### Sample Input 2
+```text
+15
+ebecdaebebcdbcd
+6
+22
+```
+
+#### Sample Output 2
+```text
+aeecdd
+```
+
+#### Sample Input 3
+```text
+5
+dcbac
+3
+7
+```
+
+#### Sample Output 3
+```text
+cac
+```
+
+#### Explanation 3
+The flags, in hoisted order, are `d(4) c(3) b(2) a(1) c(3)` where the number in parentheses is the glow strength. We must keep exactly 3 flags whose strengths sum to at least 7.
+- Keeping the very first flag 'd' would force the reading to start with 'd'.
+- Dropping 'd' and starting with 'c' at position 2 is valid: the remaining suffix `c(3) b(2) a(1) c(3)` has a maximum possible strength of $3+3+2=8 \ge 7$ for 3 flags.
+- Having settled on 'c' at position 2, we choose 'a' at position 4. The only remaining choice is 'c' at position 5. This gives `cac` with total strength $3 + 1 + 3 = 7 \ge 7$, which is the lexicographically smallest possible string.
+
+---
+
+#### Python Solution
+```python
+import sys
+from bisect import bisect_left
+
+def minFlagBroadcastCode(n, s, k, f):
+    # Precompute suffix structures for O(1) maximum strength queries
+    # cum_cnt[i][r] = count of characters in s[i:] with value >= 26 - r
+    # cum_sum[i][r] = sum of values of characters in s[i:] with value >= 26 - r
+    
+    cum_cnt = [[0] * 26 for _ in range(n + 1)]
+    cum_sum = [[0] * 26 for _ in range(n + 1)]
+    next_occ = [[-1] * 26 for _ in range(n + 1)]
+    
+    curr_occ = [-1] * 26
+    curr_cnt = [0] * 26
+    curr_sum = [0] * 26
+    
+    for i in range(n - 1, -1, -1):
+        curr_val = ord(s[i]) - 97
+        curr_occ[curr_val] = i
+        next_occ[i] = list(curr_occ)
+        
+        rev_idx = 25 - curr_val
+        val = curr_val + 1
+        for r in range(rev_idx, 26):
+            curr_cnt[r] += 1
+            curr_sum[r] += val
+        cum_sum[i] = list(curr_sum)
+        cum_cnt[i] = list(curr_cnt)
+        
+    def max_rem(pos, cnt):
+        if cnt == 0:
+            return 0
+        cc = cum_cnt[pos]
+        idx = bisect_left(cc, cnt)
+        if idx == 0:
+            return cnt * 26
+        return cum_sum[pos][idx - 1] + (cnt - cc[idx - 1]) * (26 - idx)
+
+    last = -1
+    sum_till = 0
+    ans = []
+    
+    for j in range(k):
+        rem_cnt = k - j - 1
+        for c in range(26):
+            p = next_occ[last + 1][c]
+            if p != -1 and p <= n - k + j:
+                # Check if selecting character 'c' at index 'p' allows reaching target strength 'f'
+                if c + 1 + max_rem(p + 1, rem_cnt) >= f - sum_till:
+                    last = p
+                    sum_till += c + 1
+                    ans.append(chr(c + 97))
+                    break
+                    
+    return "".join(ans)
+
+if __name__ == '__main__':
+    data = sys.stdin.read().split()
+    if data:
+        n = int(data[0])
+        s = data[1]
+        k = int(data[2])
+        f = int(data[3])
+        print(minFlagBroadcastCode(n, s, k, f))
+```
+
+---
+
+### Q2. Convoy Load Balancing With Escort Weight
+
+`[Latest]`
+
+**Topic:** `Binary Search`, `Greedy`
+
+#### Description
+Captain Reyes runs a supply convoy along a single desert highway. The crates waiting at base camp are lined up in a fixed order on the loading dock, and that order can never be changed - trucks must scoop up a contiguous run of crates exactly as they sit on the dock.
+
+Every truck that heads out also drags a fixed escort trailer, whose weight is added once to whatever load the truck is already carrying. On top of that, dock safety rules cap how many crates a single truck bed may physically hold, regardless of how light those crates are. Reyes has a fixed number of trucks available and must use every single one of them, dividing the full line of crates into that many non-empty contiguous convoys, with no convoy exceeding the crate-count cap.
+
+Reyes wants to know the smallest possible value for the heaviest truck's total load (crates plus its escort trailer), if the crates are split as cleverly as possible into that many contiguous, cap-respecting groups.
+
+#### Constraints
+- $1 \le k \le n \le 100,000$
+- $1 \le \text{weights}[i] \le 10^9$
+- $0 \le \text{escort} \le 10^9$
+- $1 \le \text{maxCrates} \le n$, and $k \times \text{maxCrates} \ge n$ (at least one valid split exists)
+
+#### Input Format
+- Line 1: `n`
+- Line 2: `k`
+- Line 3: `escort`
+- Line 4: `maxCrates`
+- Line 5: `n` space-separated integers - `weights[0] weights[1] ... weights[n-1]`
+
+#### Output Format
+- A single integer representing the minimum possible value of the maximum truck load.
+
+#### Sample Input 1
+```text
+5
+2
+3
+3
+4 8 5 6 2
+```
+
+#### Sample Output 1
+```text
+16
+```
+
+#### Explanation 1
+There are 5 crates with weights `4, 8, 5, 6, 2`.
+Each truck has an escort weight of 3, and can carry at most 3 crates.
+We must split the 5 crates into exactly 2 groups of sizes $\le 3$:
+- **Option 1:** `(4, 8)` and `(5, 6, 2)`
+  - Truck 1 load: $4 + 8 + 3 = 15$
+  - Truck 2 load: $5 + 6 + 2 + 3 = 16$
+  - Max load: 16.
+- **Option 2:** `(4, 8, 5)` and `(6, 2)`
+  - Truck 1 load: $4 + 8 + 5 + 3 = 20$
+  - Truck 2 load: $6 + 2 + 3 = 11$
+  - Max load: 20.
+
+The optimal maximum load is $\min(16, 20) = 16$.
+
+---
+
+#### Python Solution
+```python
+import sys
+
+def minMaxConvoyLoad(n, k, escort, maxCrates, weights):
+    def ok(W):
+        # Checks if we can partition weights into <= k groups
+        # where each group has sum <= W and count <= maxCrates
+        groups = 1
+        curr_sum = 0
+        curr_count = 0
+        
+        for w in weights:
+            if curr_sum + w > W or curr_count == maxCrates:
+                groups += 1
+                curr_sum = w
+                curr_count = 1
+                if groups > k:
+                    return False
+            else:
+                curr_sum += w
+                curr_count += 1
+        return True
+
+    # Binary search on the crate weight load per truck (excluding escort)
+    l = max(weights)
+    r = sum(weights)
+    
+    while l < r:
+        m = (l + r) // 2
+        if ok(m):
+            r = m
+        else:
+            l = m + 1
+            
+    return l + escort
+
+if __name__ == '__main__':
+    input_data = sys.stdin.read().split()
+    if input_data:
+        n = int(input_data[0])
+        k = int(input_data[1])
+        escort = int(input_data[2])
+        maxCrates = int(input_data[3])
+        weights = [int(x) for x in input_data[4:4+n]]
+        print(minMaxConvoyLoad(n, k, escort, maxCrates, weights))
+```
+
+---
+
+### Q3. First Subsequence
 
 **Topic:** `Strings`, `Two Pointers`, `Binary Search`, `Greedy`  
 
@@ -99,7 +355,7 @@ def firstSubsequence(A: str, B: str) -> int:
 
 ---
 
-### Q2. Maximum Length Subarray
+### Q4. Maximum Length Subarray
 
 **Topic:** `Arrays`, `Sliding Window`, `Two Pointers`, `Heaps`  
 
@@ -200,7 +456,7 @@ def longestSubarray(N: int, X: int, Y: int, A: list[int]) -> int:
 
 ---
 
-### Q3. Subtree XOR
+### Q5. Subtree XOR
 
 **Topic:** `Trees`, `DFS`, `Bitwise Operations`, `Dynamic Programming`  
 
@@ -288,7 +544,7 @@ def maximumSum(N: int, edges: list[list[int]], A: list[int], K: int) -> int:
 
 ---
 
-### Q4. Find Palindromes
+### Q6. Find Palindromes
 
 **Topic:** `Trees`, `DFS`, `String Hashing`, `Palindromes`  
 
@@ -408,7 +664,7 @@ def solvePalindromes(N: int, edges: list[list[int]], C: str, Q: int, queries: li
 
 ---
 
-### Q5. Complex Subsequences
+### Q7. Complex Subsequences
 
 **Topic:** `Arrays`, `Sweep-line`, `Dynamic Programming`, `Coordinate Compression`  
 
@@ -487,7 +743,7 @@ def longestSubsequence(N: int, K: int, queries: list[list[int]]) -> list[int]:
 
 ---
 
-### Q6. Median Path
+### Q8. Median Path
 
 **Topic:** `Trees`, `DFS`, `Fenwick Tree`, `Binary Lifting`  
 
@@ -571,7 +827,7 @@ def sumOfMedians(n: int, C: list[int], edges: list[list[int]]) -> int:
 
 ---
 
-### Q7. Reckon Strings
+### Q9. Reckon Strings
 
 **Topic:** `Dynamic Programming`, `Graphs`, `Matrix Exponentiation`, `Combinatorics`  
 
@@ -681,3 +937,4 @@ def reckonStrings(N: int, M: int, pairs: list[list[str]]) -> int:
 
 - **Time Complexity:** $O(K^3 \log N)$, where $K \le 26$ is the number of equivalence classes of characters. This is extremely efficient and fast.
 - **Space Complexity:** $O(K^2)$ to store matrices.
+
